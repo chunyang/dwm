@@ -2,7 +2,7 @@
 
 pkgname=dwm-cy
 pkgver=6.1
-pkgrel=1
+pkgrel=2
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
 arch=('i686' 'x86_64')
@@ -20,6 +20,7 @@ source=(config.h
         config.mk
         dwm.1
         dwm.png
+        dwm.desktop
         LICENSE
         README)
 
@@ -33,4 +34,5 @@ package() {
     make PREFIX=/usr DESTDIR=$pkgdir install
     install -m644 -D LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
     install -m644 -D README $pkgdir/usr/share/doc/$pkgname/README
+    install -m644 -D $srcdir/dwm.desktop $pkgdir/usr/share/xsessions/dwm.desktop
 }
