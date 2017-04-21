@@ -1,48 +1,42 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char *fonts[] = {
-    "terminus:size=10",
-	"monospace:size=10"
-};
-static const char dmenufont[]       = "monospace:size=10";
+//static const char font[]            = "-*-terminus-medium-r-*-*-10-*-*-*-*-*-*-*";
+static const char font[]            = "terminus-10";
 static const char normbordercolor[] = "#706E6C";
 static const char normbgcolor[]     = "#1A1919";
 static const char normfgcolor[]     = "#CCC1B4";
 static const char selbordercolor[]  = "#CC6A00";
 static const char selbgcolor[]      = "#CC6A00";
 static const char selfgcolor[]      = "#F2EEE9";
-/* static const char selfgcolor[]      = "#1A1919"; */
+// static const char selfgcolor[]      = "#1A1919";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int snap      = 8;        /* snap pixel */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
-static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, 0: display systray on the last monitor*/
-static const int showsystray        = 1;        /* 0 means no systray */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const Bool showsystray       = True;     /* False means no systray */
+static const Bool showbar           = True;     /* False means no bar */
+static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "q", "w", "e", "a", "s", "d" };
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	/* { "Gimp",     NULL,       NULL,       0,            1,           -1 }, */
-    /* { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 }, */
-    { "Display",  NULL,       NULL,       0,            1,           -1 },
-	{ "Steam.exe",NULL,       NULL,       0,            1,           -1 },
-	{ "Terraria.exe",NULL,    NULL,       0,            1,           -1 },
-	{ "XFontSel", NULL,       NULL,       0,            1,           -1 },
+	{ "Dia",      NULL,       "Dia v",    0,            True,        -1 },
+	{ "Display",  NULL,       NULL,       0,            True,        -1 },
+    { "Firefox",  NULL,       "Downloads",0,            True,        -1 },
+	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
+	{ "MATLAB",   NULL,       "MATLAB",   0,            True,        -1 },
+	{ "com-mathworks-util-PostVMInit", NULL, "Figure", 0, True,      -1 },
+	{ "Steam.exe",NULL,       NULL,       0,            True,        -1 },
+	{ "Terraria.exe",NULL,       NULL,       0,            True,        -1 },
+	{ "XFontSel", NULL,       NULL,       0,            True,        -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const float mfact      = 0.50;   /* factor of master area size [0.05..0.95] */
+static const int nmaster      = 1;      /* number of clients in master area */
+static const Bool resizehints = False;  /* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -53,7 +47,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-/* #define MODKEY Mod1Mask */
+//#define MODKEY Mod1Mask
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -65,8 +59,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "urxvt", NULL };
 static const char *volumedown[] = { "amixer", "sset", "Master", "5%-", NULL };
 static const char *volumemute[] = { "amixer", "sset", "Master", "toggle", NULL };
@@ -74,8 +67,8 @@ static const char *volumeup[] = { "amixer", "sset", "Master", "5%+", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd} },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd} },
     { 0,                            0x1008ff11,spawn,          {.v = volumedown} },
     { 0,                            0x1008ff12,spawn,          {.v = volumemute} },
     { 0,                            0x1008ff13,spawn,          {.v = volumeup} },
