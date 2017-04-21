@@ -1,7 +1,7 @@
 diff -up a/config.def.h b/config.def.h
---- a/config.def.h	2012-08-25 12:34:20.847202795 -0400
-+++ b/config.def.h	2012-08-25 11:58:15.210591031 -0400
-@@ -32,6 +32,7 @@ static const Layout layouts[] = {
+--- a/config.def.h	2015-11-08 14:39:37.000000000 -0800
++++ b/config.def.h	2017-04-20 23:55:38.732875193 -0700
+@@ -39,6 +39,7 @@ static const Layout layouts[] = {
  	{ "[]=",      tile },    /* first entry is default */
  	{ "><>",      NULL },    /* no layout function means floating behavior */
  	{ "[M]",      monocle },
@@ -9,7 +9,7 @@ diff -up a/config.def.h b/config.def.h
  };
  
  /* key definitions */
-@@ -66,6 +67,7 @@ static Key keys[] = {
+@@ -74,6 +75,7 @@ static Key keys[] = {
  	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
  	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
  	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -17,10 +17,11 @@ diff -up a/config.def.h b/config.def.h
  	{ MODKEY,                       XK_space,  setlayout,      {0} },
  	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
  	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+Only in src.new/dwm-6.1: config.def.h.orig
 diff -up a/dwm.c b/dwm.c
 --- a/dwm.c	2015-11-08 14:39:37.000000000 -0800
-+++ b/dwm.c	2017-04-20 23:12:27.745117608 -0700
-@@ -154,6 +154,7 @@
++++ b/dwm.c	2017-04-20 23:55:38.732875193 -0700
+@@ -154,6 +154,7 @@ static void cleanup(void);
  static void cleanupmon(Monitor *mon);
  static void clearurgent(Client *c);
  static void clientmessage(XEvent *e);
@@ -28,7 +29,7 @@ diff -up a/dwm.c b/dwm.c
  static void configure(Client *c);
  static void configurenotify(XEvent *e);
  static void configurerequest(XEvent *e);
-@@ -1664,6 +1665,32 @@
+@@ -1664,6 +1665,32 @@ tagmon(const Arg *arg)
  }
  
  void
